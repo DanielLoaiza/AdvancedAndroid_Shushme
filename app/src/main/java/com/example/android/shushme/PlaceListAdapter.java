@@ -36,8 +36,9 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
      * @param context the calling context/activity
      */
     public PlaceListAdapter(Context context, PlaceBuffer places) {
+
         this.mContext = context;
-        this.mPlaces = places;
+        mPlaces = places;
     }
 
     /**
@@ -69,13 +70,11 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
         holder.addressTextView.setText(placeAddress);
     }
 
-    public void swapPlaces(PlaceBuffer newPlaces){
-        mPlaces = newPlaces;
-        if (mPlaces != null) {
-            // Force the RecyclerView to refresh
-            this.notifyDataSetChanged();
-        }
+    public void swapPlaces(PlaceBuffer places) {
+        mPlaces = places;
+        notifyDataSetChanged();
     }
+
 
     /**
      * Returns the number of items in the cursor
@@ -84,8 +83,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
      */
     @Override
     public int getItemCount() {
-        if(mPlaces==null) return 0;
-        return mPlaces.getCount();
+        if(mPlaces != null) return mPlaces.getCount();
+        else return 0;
     }
 
     /**
